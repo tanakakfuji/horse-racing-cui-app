@@ -38,7 +38,7 @@ public class Course {
         return length;
     }
 
-    public boolean getIsDirtTrack() {
+    public boolean isDirtTrack() {
         return isDirtTrack;
     }
 
