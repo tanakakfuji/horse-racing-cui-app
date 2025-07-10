@@ -6,8 +6,8 @@ import java.util.Scanner;
 
 public class GameManager {
     private Race race;
-    private final int MIN_HORSE_COUNT = 5;
-    private final int MAX_HORSE_COUNT = 18;
+    public static final int MIN_HORSE_COUNT = 5;
+    public static final int MAX_HORSE_COUNT = 18;
     private final int[] X_SPEEDS = {1, 2, 3};
 
     public void initRace() {
