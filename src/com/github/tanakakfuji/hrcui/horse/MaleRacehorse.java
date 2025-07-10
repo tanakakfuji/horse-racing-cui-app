@@ -5,4 +5,8 @@ public class MaleRacehorse extends Racehorse {
         super(name, id);
         this.penalty = 57;
     }
+
+    public String getSex() {
+        return "牡馬";
+    }
 }
