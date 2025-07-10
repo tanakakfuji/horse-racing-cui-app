@@ -128,9 +128,9 @@ public abstract class Racehorse extends Horse {
                     }
                     case ConditionType.NORMAL -> {
                         if (i % 2 == 0) {
-                            rank = MAX_HORSE_COUNT - (i * 2);
+                            rank = MAX_HORSE_COUNT - (i / 2);
                         } else {
-                            rank = (i + 1) * 2;
+                            rank = (i + 1) / 2;
                         }
                     }
                     case ConditionType.WEAK -> {
@@ -145,6 +145,7 @@ public abstract class Racehorse extends Horse {
                         rank = i + 1;
                     }
                 }
+                break;
             }
         }
         return rank;
