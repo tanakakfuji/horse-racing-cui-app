@@ -2,6 +2,7 @@ package com.github.tanakakfuji.hrcui.course;
 
 import com.github.tanakakfuji.hrcui.enums.WeatherType;
 
+import java.util.Objects;
 import java.util.Random;
 
 public class Course {
@@ -44,5 +45,21 @@ public class Course {
 
     public WeatherType getWeather() {
         return weather;
+    }
+
+    public boolean equals(Object o) {
+        if (o == this) return true;
+        if (o == null) return false;
+        if (!(o instanceof Course)) return false;
+        Course c = (Course) o;
+        if (!(this.name.trim().equals(c.name.trim()) && this.length == c.length
+                && this.isDirtTrack == c.isDirtTrack && this.weather == this.weather)) {
+            return false;
+        }
+        return true;
+    }
+
+    public int hashCode() {
+        return Objects.hash(this.name.trim(), this.length, this.isDirtTrack, this.weather);
     }
 }

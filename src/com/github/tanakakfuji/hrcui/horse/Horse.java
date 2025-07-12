@@ -1,5 +1,6 @@
 package com.github.tanakakfuji.hrcui.horse;
 
+import java.util.Objects;
 import java.util.Random;
 
 public abstract class Horse {
@@ -24,5 +25,18 @@ public abstract class Horse {
 
     public int getWeight() {
         return weight;
+    }
+
+    public boolean equals(Object o) {
+        if (o == this) return true;
+        if (o == null) return false;
+        if (!(o instanceof Horse)) return false;
+        Horse h = (Horse) o;
+        if (!this.name.trim().equals(h.name.trim())) return false;
+        return true;
+    }
+
+    public int hashCode() {
+        return Objects.hash(this.name.trim());
     }
 }
