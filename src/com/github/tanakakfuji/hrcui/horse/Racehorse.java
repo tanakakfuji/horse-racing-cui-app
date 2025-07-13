@@ -13,7 +13,7 @@ public abstract class Racehorse extends Horse {
     protected double penalty;
     private RunningType runningStyle;
     private ConditionType condition;
-    private int[] lastThreeRecords = new int[3];
+    private String[] lastThreeRecords = new String[3];
     private boolean isGoodOnDirt;
     private boolean isGoodOnPoorGround;
     private int weightDifference;
@@ -74,7 +74,7 @@ public abstract class Racehorse extends Horse {
         return runningStyle;
     }
 
-    public int[] getLastThreeRecords() {
+    public String[] getLastThreeRecords() {
         return lastThreeRecords;
     }
 
@@ -98,7 +98,7 @@ public abstract class Racehorse extends Horse {
             } else if (baseSpeed < 20.0 && result <= MAX_HORSE_COUNT - 1) {
                 result++;
             }
-            this.lastThreeRecords[i] = result;
+            this.lastThreeRecords[i] = String.valueOf(result);
         }
     }
 
