@@ -1,15 +1,16 @@
 package com.github.tanakakfuji.hrcui.horse;
 
-import static com.github.tanakakfuji.hrcui.GameManager.MAX_HORSE_COUNT;
 import com.github.tanakakfuji.hrcui.enums.ConditionType;
 import com.github.tanakakfuji.hrcui.enums.RunningType;
 
 import java.util.Random;
 
+import static com.github.tanakakfuji.hrcui.GameManager.MAX_HORSE_COUNT;
+
 public abstract class Racehorse extends Horse {
     private int id;
     private double baseSpeed;
-    protected int penalty;
+    protected double penalty;
     private RunningType runningStyle;
     private ConditionType condition;
     private int[] lastThreeRecords = new int[3];
@@ -65,7 +66,7 @@ public abstract class Racehorse extends Horse {
         return id;
     }
 
-    public int getPenalty() {
+    public double getPenalty() {
         return penalty;
     }
 
