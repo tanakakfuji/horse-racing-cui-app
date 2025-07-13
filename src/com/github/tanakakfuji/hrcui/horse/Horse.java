@@ -34,8 +34,7 @@ public abstract class Horse {
         if (o == null) return false;
         if (!(o instanceof Horse)) return false;
         Horse h = (Horse) o;
-        if (!this.name.trim().equals(h.name.trim())) return false;
-        return true;
+        return this.name.trim().equals(h.name.trim());
     }
 
     public int hashCode() {
