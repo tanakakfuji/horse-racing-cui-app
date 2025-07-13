@@ -15,6 +15,8 @@ public abstract class Horse {
         this.weight = rand.nextInt(450, 551);
     }
 
+    public abstract String getSex();
+
     public String getName() {
         return name;
     }

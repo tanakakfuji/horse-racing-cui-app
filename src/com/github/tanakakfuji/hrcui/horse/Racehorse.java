@@ -60,8 +60,6 @@ public abstract class Racehorse extends Horse {
         this.isHealthy = hr == 0;
     }
 
-    public abstract String getSex();
-
     public int getId() {
         return id;
     }
