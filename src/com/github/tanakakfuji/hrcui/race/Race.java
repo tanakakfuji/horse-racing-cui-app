@@ -112,7 +112,7 @@ public class Race {
                         %s %d        %s
                         
                         """,
-                course.getName() + " 競馬場", course.isDirtTrack() ? "ダート" : "芝", course.getLength(), course.getWeather());
+                course.getName() + " 競馬場", course.isDirtTrack() ? "ダート" : "芝", course.getLength(), course.getWeather().getName());
         StringBuilder sb = new StringBuilder();
         sb.append("Ｓ");
         for (int i = 0; i < displaySize - 1; i++) sb.append("ー");

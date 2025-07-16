@@ -41,14 +41,14 @@ public class GameManager {
                         %s %d        %s
                         ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
                         """,
-                c.getName() + " 競馬場", c.isDirtTrack() ? "ダート" : "芝", c.getLength(), c.getWeather());
+                c.getName() + " 競馬場", c.isDirtTrack() ? "ダート" : "芝", c.getLength(), c.getWeather().getName());
         System.out.println("馬番         馬名            性齢      斤量     体重(増減量)    脚質      過去3戦    ダート   道悪");
         for (Racehorse r : racehorses) {
             String lastThreeRecords = String.join("-", r.getLastThreeRecords());
             System.out.printf("""
                             |%2d|  %-12s  |  %s%d  |  %.1f  |  %dkg(%d)  |  %-4s  |  %s  |  %s  |  %s  |
                             """,
-                    r.getId(), r.getName(), r.getSex().charAt(0), r.getAge(), r.getPenalty(), r.getWeight(), r.getWeightDifference(), r.getRunningStyle().toString(), lastThreeRecords, r.isGoodOnDirt() ? "○" : " ", r.isGoodOnPoorGround() ? "○" : " ");
+                    r.getId(), r.getName(), r.getSex().charAt(0), r.getAge(), r.getPenalty(), r.getWeight(), r.getWeightDifference(), r.getRunningStyle().getName(), lastThreeRecords, r.isGoodOnDirt() ? "○" : " ", r.isGoodOnPoorGround() ? "○" : " ");
         }
         System.out.println("ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー");
         System.out.println();

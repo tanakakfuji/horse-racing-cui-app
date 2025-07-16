@@ -12,7 +12,7 @@ public enum RunningType {
         this.name = name;
     }
 
-    public String toString() {
+    public String getName() {
         return name;
     }
 }
