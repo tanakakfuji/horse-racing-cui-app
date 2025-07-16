@@ -9,7 +9,7 @@ import java.util.Scanner;
 public class GameManager {
     private Race race;
     public static final int MIN_HORSE_COUNT = 5;
-    public static final int MAX_HORSE_COUNT = 18;
+    public static final int MAX_HORSE_COUNT = 18; // 21以上は丸文字の対応不可
     private final int[] X_SPEEDS = {1, 2, 3};
 
     public void initRace() {
@@ -80,7 +80,7 @@ public class GameManager {
             }
             System.out.print(":");
         }
-        System.out.println("レース開始");
+        race.play(xSpeed);
     }
 
     public void printRaceResult() {

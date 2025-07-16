@@ -1,5 +1,6 @@
 package com.github.tanakakfuji.hrcui.horse;
 
+import com.github.tanakakfuji.hrcui.course.Course;
 import com.github.tanakakfuji.hrcui.enums.ConditionType;
 import com.github.tanakakfuji.hrcui.enums.RunningType;
 
@@ -58,6 +59,10 @@ public abstract class Racehorse extends Horse {
 
         int hr = rand.nextInt(2);
         this.isHealthy = hr == 0;
+    }
+
+    public double run(Course course, double currentPosition) {
+        return 0.0;
     }
 
     public int getId() {
