@@ -55,7 +55,7 @@ public class Course {
         if (!(o instanceof Course)) return false;
         Course c = (Course) o;
         return this.name.trim().equals(c.name.trim()) && this.length == c.length
-                && this.isDirtTrack == c.isDirtTrack && this.weather == this.weather;
+                && this.isDirtTrack == c.isDirtTrack && this.weather == c.weather;
     }
 
     public int hashCode() {
