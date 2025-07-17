@@ -49,18 +49,10 @@ public abstract class Racehorse extends Horse {
         };
 
         setLastThreeRecords();
-
-        int dr = rand.nextInt(2);
-        this.isGoodOnDirt = dr == 0;
-
-        int pr = rand.nextInt(2);
-        this.isGoodOnPoorGround = pr == 0;
-
-        int wr = rand.nextInt(-10, 11);
-        this.weightDifference = wr;
-
-        int hr = rand.nextInt(2);
-        this.isHealthy = hr == 0;
+        this.isGoodOnDirt = rand.nextInt(2) == 0;
+        this.isGoodOnPoorGround = rand.nextInt(2) == 0;
+        this.weightDifference = rand.nextInt(-10, 11);
+        this.isHealthy = rand.nextInt(2) == 0;
     }
 
     public double run(Course course, double currentPosition) {

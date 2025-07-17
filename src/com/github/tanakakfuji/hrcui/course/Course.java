@@ -18,9 +18,7 @@ public class Course {
         Random rand = new Random();
         int lr = rand.nextInt(MIN_COURSE_LENGTH / 100, MAX_COURSE_LENGTH / 100 + 1);
         this.length = lr * 100;
-
-        int dr = rand.nextInt(2);
-        this.isDirtTrack = dr == 0;
+        this.isDirtTrack = rand.nextInt(2) == 0;
 
         int wr = rand.nextInt(3);
         this.weather = switch (wr) {
