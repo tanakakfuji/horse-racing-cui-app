@@ -35,7 +35,7 @@ public class GameManager {
         if (this.race == null) throw new IllegalStateException("レースが初期化されていない");
         Course c = race.getCourse();
         Racehorse[] racehorses = race.getRacehorses();
-        for (int i = 0; i < 50; i++) System.out.println();
+        System.out.print("\n".repeat(50));
 
         System.out.printf("""
                         %s
@@ -96,7 +96,7 @@ public class GameManager {
         Course c = race.getCourse();
         List<Racehorse> ranking = race.getRanking();
         if (ranking.isEmpty()) throw new IllegalStateException("レース結果が存在しない");
-        for (int i = 0; i < 50; i++) System.out.println();
+        System.out.print("\n".repeat(50));
 
         System.out.printf("""
                         %s

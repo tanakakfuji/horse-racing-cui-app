@@ -34,7 +34,7 @@ public class Race {
 
     public void play(int xSpeed) {
         for (int i = 3; i > 0; i--) {
-            for (int j = 0; j < 50; j++) System.out.println();
+            System.out.print("\n".repeat(50));
             System.out.println(i);
             printProgress();
             try {
@@ -49,7 +49,7 @@ public class Race {
             if (!racehorsesAtFinish.isEmpty()) {
                 rankRacehorses(racehorsesAtFinish);
             }
-            for (int i = 0; i < 50; i++) System.out.println();
+            System.out.print("\n".repeat(50));
             printProgress();
             try {
                 Thread.sleep(1000 / xSpeed);
@@ -113,27 +113,14 @@ public class Race {
                         
                         """,
                 course.getName() + " 競馬場", course.isDirtTrack() ? "ダート" : "芝", course.getLength(), course.getWeather().getName());
-        StringBuilder sb = new StringBuilder();
-        sb.append("Ｓ");
-        for (int i = 0; i < displaySize - 1; i++) sb.append("ー");
-        sb.append("Ｇ");
-        System.out.println(sb.toString());
+        System.out.println("Ｓ" + "ー".repeat(displaySize - 1) + "Ｇ");
         for (Racehorse r : racehorsePositionMap.keySet()) {
             double position = racehorsePositionMap.get(r);
             double unitLength = course.getLength() / (double) displaySize;
             int consolePos = (int) (Math.ceil(position / unitLength));
-            sb.setLength(0);
-            for (int i = 0; i < consolePos; i++) {
-                sb.append("　");
-            }
             char bib = (char) (0x2460 + (r.getId() - 1));
-            sb.append(bib);
-            System.out.println(sb.toString());
+            System.out.println("　".repeat(consolePos) + bib);
         }
-        sb.setLength(0);
-        sb.append("Ｓ");
-        for (int i = 0; i < displaySize - 1; i++) sb.append("ー");
-        sb.append("Ｇ");
-        System.out.println(sb.toString());
+        System.out.println("Ｓ" + "ー".repeat(displaySize - 1) + "Ｇ");
     }
 }
