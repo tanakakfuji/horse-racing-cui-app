@@ -28,22 +28,13 @@ public class RacehorseFactory {
     public static Racehorse createRacehorse(int id) {
         Random rand = new Random();
         String racehorseName = wordList[0][rand.nextInt(wordList[0].length)] + wordList[1][rand.nextInt(wordList[1].length)];
-        Racehorse racehorse;
         int sr = rand.nextInt(3);
-        switch (sr) {
-            case 0 -> {
-                racehorse = new MaleRacehorse(racehorseName, id);
-            }
-            case 1 -> {
-                racehorse = new FemaleRacehorse(racehorseName, id);
-            }
-            case 2 -> {
-                racehorse = new CastratedMaleRacehorse(racehorseName, id);
-            }
-            default -> {
-                throw new IllegalStateException("予期しない値: " + sr);
-            }
-        }
+        Racehorse racehorse = switch (sr) {
+            case 0 -> new MaleRacehorse(racehorseName, id);
+            case 1 -> new FemaleRacehorse(racehorseName, id);
+            case 2 -> new CastratedMaleRacehorse(racehorseName, id);
+            default -> throw new IllegalStateException("予期しない値: " + sr);
+        };
         return racehorse;
     }
 }
