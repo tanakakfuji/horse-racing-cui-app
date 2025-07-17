@@ -6,12 +6,12 @@ import static com.github.tanakakfuji.hrcui.GameManager.MAX_HORSE_COUNT;
 
 public enum ConditionType {
     PERFECT(0.4) {
-        protected int evaluateRankByCondition(int i) {
+        protected int calcRankByCondition(int i) {
             return MAX_HORSE_COUNT - i;
         }
     },
     FINE(0.2) {
-        protected int evaluateRankByCondition(int i) {
+        protected int calcRankByCondition(int i) {
             int result;
             int threeQuarterNumber = MAX_HORSE_COUNT * 3 / 4;
             if (i <= threeQuarterNumber) {
@@ -23,7 +23,7 @@ public enum ConditionType {
         }
     },
     NORMAL(0.0) {
-        protected int evaluateRankByCondition(int i) {
+        protected int calcRankByCondition(int i) {
             int result;
             if (i % 2 == 0) {
                 result = MAX_HORSE_COUNT - (i / 2);
@@ -34,7 +34,7 @@ public enum ConditionType {
         }
     },
     WEAK(-0.2) {
-        protected int evaluateRankByCondition(int i) {
+        protected int calcRankByCondition(int i) {
             int result;
             int threeQuarterNumber = MAX_HORSE_COUNT * 3 / 4;
             if (i <= threeQuarterNumber) {
@@ -46,7 +46,7 @@ public enum ConditionType {
         }
     },
     AWFUL(-0.4) {
-        protected int evaluateRankByCondition(int i) {
+        protected int calcRankByCondition(int i) {
             return i + 1;
         }
     };
@@ -74,12 +74,12 @@ public enum ConditionType {
         for (int i = 0; i < MAX_HORSE_COUNT; i++) {
             threshold += firstThreshold * Math.pow(4.0 / 3.0, i);
             if (r < threshold || i == MAX_HORSE_COUNT - 1) {
-                rank = evaluateRankByCondition(i);
+                rank = calcRankByCondition(i);
                 break;
             }
         }
         return rank;
     }
 
-    protected abstract int evaluateRankByCondition(int i);
+    protected abstract int calcRankByCondition(int i);
 }

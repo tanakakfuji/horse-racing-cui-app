@@ -66,10 +66,10 @@ public abstract class Racehorse extends Horse {
     public double run(Course course, double currentPosition) {
         double speed = baseSpeed;
         speed += condition.getSpeed();
-        speed += getSpeedByCourseLength(course);
-        speed += getSpeedByDirtTrack(course);
-        speed += getSpeedByPoorGround(course);
-        speed += getSpeedByHealthy();
+        speed += calcSpeedByCourseLength(course);
+        speed += calcSpeedByDirtTrack(course);
+        speed += calcSpeedByPoorGround(course);
+        speed += calcSpeedByHealthy();
         return speed;
     }
 
@@ -101,7 +101,7 @@ public abstract class Racehorse extends Horse {
         return weightDifference;
     }
 
-    private double getSpeedByCourseLength(Course course) {
+    private double calcSpeedByCourseLength(Course course) {
         int weightDiff = MAX_HORSE_WEIGHT - MIN_HORSE_WEIGHT;
         int lengthDiff = MAX_COURSE_LENGTH - MIN_COURSE_LENGTH;
         double speed = 0.0;
@@ -128,7 +128,7 @@ public abstract class Racehorse extends Horse {
         return speed;
     }
 
-    private double getSpeedByDirtTrack(Course course) {
+    private double calcSpeedByDirtTrack(Course course) {
         double speed = 0.0;
         if (course.isDirtTrack()) {
             if (isGoodOnDirt) {
@@ -140,7 +140,7 @@ public abstract class Racehorse extends Horse {
         return speed;
     }
 
-    private double getSpeedByPoorGround(Course course) {
+    private double calcSpeedByPoorGround(Course course) {
         double speed = 0.0;
         if (course.isPoorGround()) {
             if (isGoodOnPoorGround) {
@@ -152,7 +152,7 @@ public abstract class Racehorse extends Horse {
         return speed;
     }
 
-    private double getSpeedByHealthy() {
+    private double calcSpeedByHealthy() {
         double speed = 0.0;
         if (weightDifference < -5 || 5 < weightDifference) {
             speed = isHealthy ? 0.2 : -0.2;
