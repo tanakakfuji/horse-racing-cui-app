@@ -6,7 +6,7 @@ public enum RunningType {
     LOOKER("差し"),
     CLOSER("追い込み");
 
-    String name;
+    private String name;
 
     RunningType(String name) {
         this.name = name;

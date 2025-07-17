@@ -7,7 +7,7 @@ public enum ConditionType {
     WEAK(-0.2),
     AWFUL(-0.4);
 
-    double speed;
+    private double speed;
 
     ConditionType(double speed) {
         this.speed = speed;

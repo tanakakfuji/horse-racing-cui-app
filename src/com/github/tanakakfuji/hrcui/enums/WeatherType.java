@@ -5,7 +5,7 @@ public enum WeatherType {
     CLOUDY("曇り"),
     RAINY("雨");
 
-    String name;
+    private String name;
 
     WeatherType(String name) {
         this.name = name;
