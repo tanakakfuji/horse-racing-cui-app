@@ -42,10 +42,7 @@ public class Course {
     }
 
     public boolean isPoorGround() {
-        if (!isDirtTrack && weather == WeatherType.RAINY || isDirtTrack && weather == WeatherType.SUNNY) {
-            return true;
-        }
-        return false;
+        return !isDirtTrack && weather == WeatherType.RAINY || isDirtTrack && weather == WeatherType.SUNNY;
     }
 
     public WeatherType getWeather() {
@@ -57,11 +54,8 @@ public class Course {
         if (o == null) return false;
         if (!(o instanceof Course)) return false;
         Course c = (Course) o;
-        if (!(this.name.trim().equals(c.name.trim()) && this.length == c.length
-                && this.isDirtTrack == c.isDirtTrack && this.weather == this.weather)) {
-            return false;
-        }
-        return true;
+        return this.name.trim().equals(c.name.trim()) && this.length == c.length
+                && this.isDirtTrack == c.isDirtTrack && this.weather == this.weather;
     }
 
     public int hashCode() {
