@@ -47,7 +47,7 @@ public class GameManager {
         for (Racehorse r : racehorses) {
             String lastThreeRecords = String.join("-", r.getLastThreeRecords());
             System.out.printf("""
-                            |%2s|  %-12s  |  %s%d  |  %.1f  |  %dkg(%d)  |  %-4s  |  %s  |  %s  |  %s  |
+                            |%2s|  %-12s  |  %s%d  |  %.1f  |  %dkg(%+d)  |  %-4s  |  %s  |  %s  |  %s  |
                             """,
                     (char) (0x2460 + (r.getId() - 1)), r.getName(), r.getSex().charAt(0), r.getAge(), r.getPenalty(), r.getWeight(), r.getWeightDifference(), r.getRunningStyle().getName(), lastThreeRecords, r.isGoodOnDirt() ? "○" : " ", r.isGoodOnPoorGround() ? "○" : " ");
         }
@@ -110,7 +110,7 @@ public class GameManager {
             Racehorse r = ranking.get(i);
             String lastThreeRecords = String.join("-", r.getLastThreeRecords());
             System.out.printf("""
-                            |%2d|%2s|  %-12s  |  %s%d  |  %.1f  |  %dkg(%d)  |  %-4s  |  %s  |  %s  |  %s  |
+                            |%2d|%2s|  %-12s  |  %s%d  |  %.1f  |  %dkg(%+d)  |  %-4s  |  %s  |  %s  |  %s  |
                             """,
                     i + 1, (char) (0x2460 + (r.getId() - 1)), r.getName(), r.getSex().charAt(0), r.getAge(), r.getPenalty(), r.getWeight(), r.getWeightDifference(), r.getRunningStyle().getName(), lastThreeRecords, r.isGoodOnDirt() ? "○" : " ", r.isGoodOnPoorGround() ? "○" : " ");
         }
