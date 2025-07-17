@@ -68,11 +68,11 @@ public enum ConditionType {
 //        Sn = a / (1 - r) = 1 (100%)において、a = 1 / 3, r = 2 / 3 で考える。
 //        一番低い確率を決めてから、徐々に確率を上げる。誤差の発生は一番高い確率で丸める。
         int range = 10000;
-        double firstThreshold = 1.0 / 3.0 * Math.pow(2.0 / 3.0, MAX_HORSE_COUNT - 1) * range;
+        double firstThreshold = 1.0 / 4.0 * Math.pow(3.0 / 4.0, MAX_HORSE_COUNT - 1) * range;
         int r = rand.nextInt(range + 1);
         double threshold = 0;
         for (int i = 0; i < MAX_HORSE_COUNT; i++) {
-            threshold += firstThreshold * Math.pow(3.0 / 2.0, i);
+            threshold += firstThreshold * Math.pow(4.0 / 3.0, i);
             if (r < threshold || i == MAX_HORSE_COUNT - 1) {
                 rank = evaluateRankByCondition(i);
                 break;
