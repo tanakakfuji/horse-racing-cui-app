@@ -52,7 +52,15 @@ public class GameManager {
                     (char) (0x2460 + (r.getId() - 1)), r.getName(), r.getSex().charAt(0), r.getAge(), r.getPenalty(), r.getWeight(), r.getWeightDifference(), r.getRunningStyle().getName(), lastThreeRecords, r.isGoodOnDirt() ? "○" : " ", r.isGoodOnPoorGround() ? "○" : " ");
         }
         System.out.println("ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー");
-        System.out.println();
+        System.out.println("""
+                <出走表解説>
+                コースの長さと体重: 短距離はパワーのある重量級、長距離はスタミナのある軽量級が有利です。
+                増減量　　　　　　: 増減が大きい馬は、注意する必要があります。
+                脚質　　　　　　　: 逃げ・先行・差し・追い込みは、加速する区間が異なるだけで、基本的にレース全体の速さには影響しません。
+                過去３戦の成績　　: 馬の調子に関わる最も重要な指標です。
+                ダート適性　　　　: コースがダートの場合、他の馬よりも速く走ります。
+                道悪適性　　　　　: コースが道悪の場合、他の馬よりも速く走ります。
+                """);
     }
 
     public void startRace() {
