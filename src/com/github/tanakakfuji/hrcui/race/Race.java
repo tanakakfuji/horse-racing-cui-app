@@ -90,7 +90,7 @@ public class Race {
 
     private void rankRacehorses(List<Racehorse> racehorsesAtFinish) {
         while (!racehorsesAtFinish.isEmpty()) {
-            Racehorse fasterRacehorse = racehorsesAtFinish.get(0);
+            Racehorse fasterRacehorse = racehorsesAtFinish.getFirst();
             double maxPosition = racehorsePositionMap.get(fasterRacehorse);
             for (int i = 1; i < racehorsesAtFinish.size(); i++) {
                 Racehorse r = racehorsesAtFinish.get(i);
@@ -101,7 +101,7 @@ public class Race {
             }
             ranking.add(fasterRacehorse);
             racehorsePositionMap.put(fasterRacehorse, (double) course.getLength());
-            racehorsesAtFinish.remove(racehorsesAtFinish.indexOf(fasterRacehorse));
+            racehorsesAtFinish.remove(fasterRacehorse);
         }
     }
 
