@@ -10,8 +10,8 @@ public class Course {
     private int length;
     private boolean isDirtTrack;
     private WeatherType weather;
-    private final int MIN_COURSE_LENGTH = 1000;
-    private final int MAX_COURSE_LENGTH = 3600;
+    public static final int MIN_COURSE_LENGTH = 1000;
+    public static final int MAX_COURSE_LENGTH = 3600;
 
     public Course(String name) {
         this.name = name;
@@ -41,6 +41,13 @@ public class Course {
 
     public boolean isDirtTrack() {
         return isDirtTrack;
+    }
+
+    public boolean isPoorGround() {
+        if (!isDirtTrack && weather == WeatherType.RAINY || isDirtTrack && weather == WeatherType.SUNNY) {
+            return true;
+        }
+        return false;
     }
 
     public WeatherType getWeather() {

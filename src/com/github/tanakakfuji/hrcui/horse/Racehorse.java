@@ -7,6 +7,8 @@ import com.github.tanakakfuji.hrcui.enums.RunningType;
 import java.util.Random;
 
 import static com.github.tanakakfuji.hrcui.GameManager.MAX_HORSE_COUNT;
+import static com.github.tanakakfuji.hrcui.course.Course.MAX_COURSE_LENGTH;
+import static com.github.tanakakfuji.hrcui.course.Course.MIN_COURSE_LENGTH;
 
 public abstract class Racehorse extends Horse {
     private int id;
@@ -62,7 +64,13 @@ public abstract class Racehorse extends Horse {
     }
 
     public double run(Course course, double currentPosition) {
-        return 0.0;
+        double speed = baseSpeed;
+        speed += condition.getSpeed();
+        speed += getSpeedByCourseLength(course);
+        speed += getSpeedByDirtTrack(course);
+        speed += getSpeedByPoorGround(course);
+        speed += getSpeedByHealthy();
+        return speed;
     }
 
     public int getId() {
@@ -93,6 +101,67 @@ public abstract class Racehorse extends Horse {
         return weightDifference;
     }
 
+    private double getSpeedByCourseLength(Course course) {
+        int weightDiff = MAX_HORSE_WEIGHT - MIN_HORSE_WEIGHT;
+        int lengthDiff = MAX_COURSE_LENGTH - MIN_COURSE_LENGTH;
+        double speed = 0.0;
+//        短距離の場合、重量級が有利
+        if (course.getLength() <= MIN_COURSE_LENGTH + lengthDiff / 3.0) {
+            if (MIN_HORSE_WEIGHT + weightDiff * 2.0 / 3.0 <= getWeight()) {
+                speed = 0.2;
+            }
+        }
+//        中距離の場合、中量級が有利
+        else if (course.getLength() <= MIN_COURSE_LENGTH + lengthDiff * 2.0 / 3.0) {
+            if (MIN_HORSE_WEIGHT + weightDiff / 3.0 <= getWeight() && getWeight() <= MIN_HORSE_WEIGHT + weightDiff * 2.0 / 3.0) {
+                speed = 0.2;
+            }
+        }
+//        長距離の場合、軽量級が有利
+        else if (course.getLength() <= MAX_COURSE_LENGTH) {
+            if (getWeight() <= MIN_HORSE_WEIGHT + weightDiff / 3.0) {
+                speed = 0.2;
+            }
+        } else {
+            speed = -0.2;
+        }
+        return speed;
+    }
+
+    private double getSpeedByDirtTrack(Course course) {
+        double speed = 0.0;
+        if (course.isDirtTrack()) {
+            if (isGoodOnDirt) {
+                speed = 0.2;
+            } else {
+                speed = -0.2;
+            }
+        }
+        return speed;
+    }
+
+    private double getSpeedByPoorGround(Course course) {
+        double speed = 0.0;
+        if (course.isPoorGround()) {
+            if (isGoodOnPoorGround) {
+                speed = 0.2;
+            } else {
+                speed = -0.2;
+            }
+        }
+        return speed;
+    }
+
+    private double getSpeedByHealthy() {
+        double speed = 0.0;
+        if (weightDifference < -5 || 5 < weightDifference) {
+            speed = isHealthy ? 0.2 : -0.2;
+        } else {
+            speed = isHealthy ? 0.1 : -0.1;
+        }
+        return speed;
+    }
+
     private void setLastThreeRecords() {
         for (int i = 0; i < 3; i++) {
             int result = rankBasedOnCondition();
@@ -101,7 +170,7 @@ public abstract class Racehorse extends Horse {
             } else if (baseSpeed < 20.0 && result <= MAX_HORSE_COUNT - 1) {
                 result++;
             }
-            this.lastThreeRecords[i] = String.valueOf(result);
+            lastThreeRecords[i] = String.valueOf(result);
         }
     }
 
@@ -118,7 +187,7 @@ public abstract class Racehorse extends Horse {
         for (int i = 0; i < MAX_HORSE_COUNT; i++) {
             threshold += firstThreshold * Math.pow(3.0 / 2.0, i);
             if (r < threshold || i == MAX_HORSE_COUNT - 1) {
-                switch (this.condition) {
+                switch (condition) {
                     case ConditionType.PERFECT -> {
                         rank = MAX_HORSE_COUNT - i;
                     }

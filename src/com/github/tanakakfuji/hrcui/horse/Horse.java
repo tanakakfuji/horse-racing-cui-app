@@ -7,12 +7,14 @@ public abstract class Horse {
     private String name;
     private int age;
     private int weight;
+    public static final int MIN_HORSE_WEIGHT = 450;
+    public static final int MAX_HORSE_WEIGHT = 550;
 
     public Horse(String name) {
         this.name = name;
         Random rand = new Random();
         this.age = rand.nextInt(2, 7);
-        this.weight = rand.nextInt(450, 551);
+        this.weight = rand.nextInt(MIN_HORSE_WEIGHT, MAX_HORSE_WEIGHT + 1);
     }
 
     public abstract String getSex();
