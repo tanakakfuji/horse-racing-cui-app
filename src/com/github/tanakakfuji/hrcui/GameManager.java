@@ -4,6 +4,7 @@ import com.github.tanakakfuji.hrcui.course.Course;
 import com.github.tanakakfuji.hrcui.horse.Racehorse;
 import com.github.tanakakfuji.hrcui.race.Race;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class GameManager {
@@ -84,6 +85,28 @@ public class GameManager {
     }
 
     public void printRaceResult() {
-        System.out.println("結果を表示");
+        Course c = race.getCourse();
+        List<Racehorse> ranking = race.getRanking();
+        if (ranking.isEmpty()) throw new IllegalStateException("レース結果が存在しない");
+        for (int i = 0; i < 50; i++) System.out.println();
+
+        System.out.printf("""
+                        %s
+                        %s %d        %s
+                        ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
+                        """,
+                c.getName() + " 競馬場", c.isDirtTrack() ? "ダート" : "芝", c.getLength(), c.getWeather().getName());
+        System.out.println("レース結果");
+        System.out.println("着順 馬番         馬名            性齢      斤量     体重(増減量)    脚質      過去3戦    ダート   道悪");
+        for (int i = 0; i < ranking.size(); i++) {
+            Racehorse r = ranking.get(i);
+            String lastThreeRecords = String.join("-", r.getLastThreeRecords());
+            System.out.printf("""
+                            |%2d|%2s|  %-12s  |  %s%d  |  %.1f  |  %dkg(%d)  |  %-4s  |  %s  |  %s  |  %s  |
+                            """,
+                    i + 1, (char) (0x2460 + (r.getId() - 1)), r.getName(), r.getSex().charAt(0), r.getAge(), r.getPenalty(), r.getWeight(), r.getWeightDifference(), r.getRunningStyle().getName(), lastThreeRecords, r.isGoodOnDirt() ? "○" : " ", r.isGoodOnPoorGround() ? "○" : " ");
+        }
+        System.out.println("ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー");
+        System.out.println();
     }
 }
