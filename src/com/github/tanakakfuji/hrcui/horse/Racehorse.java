@@ -70,6 +70,7 @@ public abstract class Racehorse extends Horse {
         speed += calcSpeedByDirtTrack(course);
         speed += calcSpeedByPoorGround(course);
         speed += calcSpeedByHealthy();
+        speed *= runningStyle.calcBoostRate(currentPosition / course.getLength());
         return speed;
     }
 
