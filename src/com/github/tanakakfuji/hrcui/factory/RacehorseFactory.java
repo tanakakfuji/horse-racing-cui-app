@@ -1,6 +1,6 @@
 package com.github.tanakakfuji.hrcui.factory;
 
-import com.github.tanakakfuji.hrcui.horse.CastratedMaleRacrhorse;
+import com.github.tanakakfuji.hrcui.horse.CastratedMaleRacehorse;
 import com.github.tanakakfuji.hrcui.horse.FemaleRacehorse;
 import com.github.tanakakfuji.hrcui.horse.MaleRacehorse;
 import com.github.tanakakfuji.hrcui.horse.Racehorse;
@@ -38,7 +38,7 @@ public class RacehorseFactory {
                 racehorse = new FemaleRacehorse(racehorseName, id);
             }
             case 2 -> {
-                racehorse = new CastratedMaleRacrhorse(racehorseName, id);
+                racehorse = new CastratedMaleRacehorse(racehorseName, id);
             }
             default -> {
                 throw new IllegalStateException("予期しない値: " + sr);
